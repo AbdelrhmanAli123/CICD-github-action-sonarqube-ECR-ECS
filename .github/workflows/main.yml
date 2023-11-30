@@ -3,7 +3,7 @@ env:
   AWS_REGION: us-east-2
 on: workflow_dispatch
 jobs:
-  Testing:
+  TEST-CQ-steps:
     runs-on: ubuntu-latest
     steps:
         - name: for Testing
@@ -47,6 +47,11 @@ jobs:
           env:
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
             SONAR_HOST_URL: ${{ secrets.SONAR_URL }} 
+        
+  BUILD_AND_PUBLISH:
+    needs: TEST-CQ-steps
+    runs-on: ubuntu-latest
+    steps:
         - name: Update application.properties file
           run: |
             sed -i "s/^jdbc.username.*$/jdbc.username\=${{ secrets.AWS_RDS_USER }}/" src/main/resources/application.properties
