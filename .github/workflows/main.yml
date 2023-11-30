@@ -10,6 +10,9 @@ jobs:
         - name: Maven test
           run:  mvn test
         
+        - name: clean the old builds
+          run: mvn clean 
+        
         - name: Maven install
           run: mvn install
         
