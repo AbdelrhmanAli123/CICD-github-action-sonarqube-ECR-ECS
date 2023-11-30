@@ -7,14 +7,8 @@ jobs:
         - name: for Testing
           uses: actions/checkout@v4
 
-        - name: Maven test
-          run:  mvn test
-        
-        - name: clean the old builds
-          run: mvn clean 
-        
-        - name: Maven install
-          run: mvn install
+        - name: Maven test 
+          run:  mvn test install
         
         - name: Checkstyle
           run: mvn checkstyle:checkstyle
@@ -27,6 +21,11 @@ jobs:
    
         - name: Setup SonarQube
           uses: warchant/setup-sonar-scanner@v7
-     
+        # Run sonar-scanner
         - name: SonarQube Scan
-          run: mvn sonar:sonar
+          run: sonar-scanner
+           -Dsonar.host.url=${{ secrets.SONAR_URL }}
+           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+           -Dsonar.organization=${{ secrets.SONAR_ORG }}
+           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT }}
+           -Dsonar.sources=$GITHUB_WORKSPACE
