@@ -6,7 +6,8 @@ env:
   ECS_TASK_DEF: task-def-json/taskdef.json
   ECS_SERVICE: cicd-actions-service
   CONTAINER_NAME: actions
-on: workflow_dispatch
+  
+on: [push, workflow_dispatch]
 jobs:
   TEST-CQ-steps:
     runs-on: ubuntu-latest
