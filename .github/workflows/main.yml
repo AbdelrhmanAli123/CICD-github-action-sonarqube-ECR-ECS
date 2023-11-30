@@ -1,6 +1,6 @@
 name: CI/CD Pipeline
 env:
-  AWS_REGION: us-east-2
+  AWS_REGION: us-east-1
 on: workflow_dispatch
 jobs:
   TEST-CQ-steps:
