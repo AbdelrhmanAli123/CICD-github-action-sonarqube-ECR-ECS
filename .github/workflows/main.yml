@@ -1,4 +1,6 @@
 name: CI/CD Pipeline
+env:
+  AWS_REGION: us-east-2
 on: workflow_dispatch
 jobs:
   Testing:
@@ -45,3 +47,22 @@ jobs:
           env:
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
             SONAR_HOST_URL: ${{ secrets.SONAR_URL }} 
+        - name: Update application.properties file
+          run: |
+          sed -i "s/^jdbc.username.*$/jdbc.username\=${{ secrets.AWS_RDS_USER }}/" src/main/resources/application.properties
+          sed -i "s/^jdbc.password.*$/jdbc.password\=${{ secrets.AWS_RDS_PASS }}/" src/main/resources/application.properties
+          sed -i "s/db01/${{ secrets.AWS_RDS_ENDPOINT }}/" src/main/resources/application.properties
+
+
+        - name: Build & Upload image to ECR
+          uses: appleboy/docker-ecr-action@master
+          with:
+            access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            secret_key: ${{ secrets.AWS_SECRET_KEY_ID }}
+            registry: ${{ secrets.AWS_ECR_ID }}
+            repo: actions_repo
+            region: ${{ env.AWS_REGION }}
+            tags: latest,${{ github.run_number }}
+            daemon_off: false
+            dockerfile: ./Dockerfile
+            context: ./
