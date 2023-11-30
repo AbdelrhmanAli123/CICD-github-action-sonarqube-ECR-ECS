@@ -52,6 +52,9 @@ jobs:
     needs: TEST-CQ-steps
     runs-on: ubuntu-latest
     steps:
+        - name: Code checkout
+          uses: actions/checkout@v4
+          
         - name: Update application.properties file
           run: |
             sed -i "s/^jdbc.username.*$/jdbc.username\=${{ secrets.AWS_RDS_USER }}/" ../src/main/resources/application.properties
