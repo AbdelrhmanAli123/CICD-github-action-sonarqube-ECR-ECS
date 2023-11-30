@@ -10,6 +10,9 @@ jobs:
         - name: Maven test
           run:  mvn test
         
+        - name: Maven install
+          run: mvn install
+        
         - name: Checkstyle
           run: mvn checkstyle:checkstyle
 
@@ -23,15 +26,4 @@ jobs:
           uses: warchant/setup-sonar-scanner@v7
      
         - name: SonarQube Scan
-          run: |
-            sonar-scanner \
-              -Dsonar.host.url=${{ secrets.SONAR_URL }} \
-              -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-              -Dsonar.organization=${{ secrets.SONAR_ORG }} \
-              -Dsonar.projectKey=${{ secrets.SONAR_PROJECT }} \
-              -Dsonar.sources=src/ \
-              -Dsonar.junit.reportsPath=target/surefire-reports/ \
-              -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-              -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
-              -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/
-
+          run: mvn sonar:sonar
