@@ -49,7 +49,8 @@
 - modify the task definition to use the ECR repo endpoint
 - create ECS service
   ![Screenshot 2023-12-01 011420](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/565ce0ea-d389-4224-96f9-3612678c57d7)
--  modify the ECS service to use the task definition and configure the Application loadbalancer via ECS service
+-  modify the ECS service to use the task definition and configure the Application load balancer via ECS service
+-  put the health route /login
 
 
 
