@@ -45,6 +45,7 @@
 - create ECS cluster
   ![Screenshot 2023-12-01 011355](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/b8822095-a3b8-4651-8e1c-ca6395f43dae)
 - create task definition
+- app works on port 8080
   ![Screenshot 2023-12-01 011438](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/916b60b1-089b-446e-b9cd-ac478b450cfa)
 - modify the task definition to use the ECR repo endpoint
 - create ECS service
