@@ -6,7 +6,8 @@
 - aws cli
 
 ## project design 
-![actions](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/320b9930-d1ad-410c-83ec-97926bdb5f34)
+![Screenshot 2023-12-02 215210](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/9b695c2c-6b59-4478-a1a6-613effa426d3)
+
 
 ## Project steps
 ######
@@ -16,24 +17,24 @@
 - start to write you github action file
 
 ### create aws user
-- create aws user with full access on the ECR and ECS
+- create an aws user with full access to the ECR and ECS
 - save the public and secret access keys in the repo secret
-- I used the full access for sake of simplicity
-- put your aws account id in the repo secret as well
+- I used full access for the sake of simplicity
+- put your AWS account id in the repo secret as well
 
 ### create sonar cloud account
-- create sonar cloud account and then create new organization
-- create new project 
+- create sonar cloud account and then create a new organization
+- create a new project 
 - save the key of the organization in the repo secret
-- create new tokan and save it in the repo secret
+- create a new token and save it in the repo secret
 - save the key of the project in the repo secret
-- save the sonar cloud url in the repo secret as well, I mean this URL "https://sonarcloud.io"
-- put the name and key the same for sake of simplicity
+- save the sonar cloud URL in the repo secret as well, I mean this URL "https://sonarcloud.io"
+- note: write the name and key of the organization and project the same for the sake of simplicity
   
 ### create RDS
-- create RDS using aws console 
+- create RDS using the AWS console 
 - store the credentials in the repo secret to use them later
-- store the name and passord and the endpoint in the repo secret
+- store the name and password and the endpoint in the repo secret
 
 
 ### setup ECR 
@@ -51,19 +52,19 @@
 - create ECS service
   ![Screenshot 2023-12-01 011420](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/565ce0ea-d389-4224-96f9-3612678c57d7)
 -  modify the ECS service to use the task definition and configure the Application load balancer via ECS service
--  put the health route /login
+-  put the health check route /login
 
 
 
-### here is all the secrets that i used 
+### Here are all the secrets that I used 
 
 ![Screenshot 2023-12-01 195906](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/0e016004-b412-4801-b485-8393be82f089)
 
 
-### change the workflow values with the appropriate values that you stored and then run the workflow 
+### Change the workflow values with the appropriate values that you stored and then run the workflow 
 ![Screenshot 2023-12-01 013845](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/f37dcef1-8d74-4eaf-86b0-f314c39edb95)
 
-### access the application useing the load balancer endpoint 
+### Access the application using the load balancer endpoint 
 ![Screenshot 2023-12-01 011616](https://github.com/AbdelrhmanAli123/CICD-github-action-sonarqube-ECR-ECS/assets/133269614/4835c860-d6e0-464d-b3cb-08c6bb0ead63)
 
-### finally it works fine :)
+### Finally it works fine :)
